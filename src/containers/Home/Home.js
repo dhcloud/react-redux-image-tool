@@ -52,15 +52,13 @@ class Home extends React.Component {
   }
 
   handlePageChange = activePage => {
-    // var testObject = { 'one': 1, 'two': 2, 'three': 3 };
-
     // Put the object into storage
     localStorage.setItem('favourites', JSON.stringify(this.props.favourites));
 
     // Retrieve the object from storage
-    //var retrievedObject = localStorage.getItem('testObject');
+    //const favourites = localStorage.getItem('favourites');
 
-    // console.log('retrievedObject: ', JSON.parse(retrievedObject));
+    // console.log('favourites: ', JSON.parse(favourites));
     this.makeApiRequest(activePage)
   }
 

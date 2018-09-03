@@ -1,0 +1,41 @@
+.image-container {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background: #0001;
+  transform: scale(0);
+}
+
+.animateImage {
+  animation: tweenImage .25s ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes tweenImage {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  background: #0006;
+}
+
+.icon__container-favourite {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.icon-favourite {
+  box-sizing: border-box;
+}
+
+.icon-favourite:hover {
+  cursor: pointer;
+}
+

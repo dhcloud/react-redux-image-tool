@@ -1,0 +1,72 @@
+
+/*
+ * Back usage
+ * @example
+ *
+    --COLOR_RED:                234, 28, 10;    // #ea1c0a;
+    --COLOR_RED_ACTIVE:         213, 22, 7;     // #d51607;
+    --COLOR_RED_LIGHT:          250,198,194;    // #fac6c2;
+    --COLOR_BORDEAUX:           176, 4, 2;      // #b00402;
+    --COLOR_YELLOW:             227, 224, 0;    // #e3e000;
+    --COLOR_TURQUOISE:          30, 162, 177;   // #1ea2b1;
+    --COLOR_TURQUOISE_MEDIUM:   15,  115, 138;  // #0f738a;
+    --COLOR_TURQUOISE_DARK:     9, 82, 99;      // #095263;
+    --COLOR_TURQUOISE_DISABLE:  199, 232, 235;  // #c7e8eb;
+    --COLOR_GREY_DARK:          57, 57, 58;     // #39393a;
+    --COLOR_GREY_MEDIUM:        191, 191, 191;  // #bfbfbf;
+    --COLOR_GREY_LIGHT:         232, 232, 232;  // #e8e8e8;
+    --COLOR_WHITE:              255, 255, 255;  // #ffffff;
+    --COLOR_GREY_CYAN_LIGHT:    242, 251, 252;  // #f2fbfc;
+    --COLOR_GREY_DARK_VERY:     60, 60, 60;     // #3c3c3c;
+    --COLOR_GREY_CHARCOAL:      57, 57, 58;     // #3c3c3c;
+*/
+
+// if there is non standard color mutated from existing, use transform functions:
+// http://ethanmuller.github.io/sass-color-function-generator-thing/
+
+$_COLOR_RED:                #ea1c0a;
+$_COLOR_RED_ACTIVE:         #d51607;
+$_COLOR_RED_LIGHT:          #fac6c2;
+$_COLOR_BORDEAUX:           #b00402;
+$_COLOR_YELLOW:             #e3e000;
+$_COLOR_TURQUOISE:          #1ea2b1;
+$_COLOR_TURQUOISE_MEDIUM:   #0f738a;
+$_COLOR_TURQUOISE_DARK:     #095263;
+$_COLOR_TURQUOISE_DISABLE:  #c7e8eb;
+$_COLOR_GREY_DARK:          #39393a;
+$_COLOR_GREY_MEDIUM:        #bfbfbf;
+$_COLOR_GREY_LIGHT:         #e8e8e8;
+$_COLOR_GREY_EXTRA_LIGHT:   #f6f6f7;
+$_COLOR_GREY_DARK_VERY:     #3c3c3c;
+$_COLOR_GREY_CYAN_LIGHT:    #f2fbfc;
+$_COLOR_GREY_CHARCOAL:      #39393a;
+$_COLOR_WHITE:              #ffffff;
+$_COLOR_WHITE_OFF:          #f4f4f4;
+$_COLOR_BLACK:              #000000;
+
+
+$_COLOR_MAP: (
+    RED:                $_COLOR_RED,
+    RED_ACTIVE:         $_COLOR_RED_ACTIVE,
+    RED_LIGHT:          $_COLOR_RED_LIGHT,
+    BORDEAUX:           $_COLOR_BORDEAUX,
+    YELLOW:             $_COLOR_YELLOW,
+    TURQUOISE:          $_COLOR_TURQUOISE,
+    TURQUOISE_MEDIUM:   $_COLOR_TURQUOISE_MEDIUM,
+    TURQUOISE_DARK:     $_COLOR_TURQUOISE_DARK,
+    TURQUOISE_DISABLE:  $_COLOR_TURQUOISE_DISABLE,
+    GREY_DARK:          $_COLOR_GREY_DARK,
+    GREY_MEDIUM:        $_COLOR_GREY_MEDIUM,
+    GREY_LIGHT:         $_COLOR_GREY_LIGHT,
+    GREY_EXTRA_LIGHT:   $_COLOR_GREY_EXTRA_LIGHT,
+    GREY_DARK_VERY:     $_COLOR_GREY_DARK_VERY,
+    GREY_CYAN_LIGHT:    $_COLOR_GREY_CYAN_LIGHT,
+    GREY_CHARCOAL:      $_COLOR_GREY_CHARCOAL,
+    WHITE:              $_COLOR_WHITE,
+    WHITE_OFF:          $_COLOR_WHITE_OFF,
+    BLACK:              $_COLOR_BLACK
+);
+
+// @each $key, $value in $_COLOR_MAP {
+//  @debug "The color is #{$key} and value is #{$value}"
+// }

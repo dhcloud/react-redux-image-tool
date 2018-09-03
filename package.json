@@ -1,0 +1,63 @@
+{
+  "name": "react-boilerplate",
+  "version": "1.0.0",
+  "description": "A boilerplate for React/Redux",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --progress --colors --config ./webpack.config.js --mode development",
+    "serve": "webpack-dev-server --open",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "dependencies": {
+    "@material-ui/core": "^1.5.1",
+    "@material-ui/icons": "^2.0.3",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.1.3",
+    "dotenv": "^6.0.0",
+    "node-fetch": "^2.2.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-grid-layout": "^0.16.6",
+    "react-js-pagination": "^3.0.2",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "semantic-ui-css": "^2.3.3",
+    "semantic-ui-react": "^0.82.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^1.0.0",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.1",
+    "node-sass": "^4.9.3",
+    "react-svg-loader": "^2.1.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.22.1",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "boilerplate"
+  ],
+  "author": "David Haygarth",
+  "license": "ISC"
+}

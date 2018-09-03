@@ -17,7 +17,6 @@ class GridImage extends React.Component {
   }
 
   handleClick = event => {
-    console.log('handleClick', this.props.id);
     this.setState(prevState => ({ isFavourite: !prevState.isFavourite }), () => {
       this.dispatchFavourite();
     })

@@ -1,7 +1,6 @@
 import { ADD_FAVOURITE, REMOVE_FAVOURITE } from '../constants/';
 
 const initialState = JSON.parse(localStorage.getItem('favourites')) || {}
-console.log('REDUCER: initialState', initialState)
 
 export default (state = initialState, { type, item }) => {
   let imageObjById;

@@ -16,6 +16,18 @@ class GridImage extends React.Component {
     isFavourite: false
   }
 
+  componentDidUpdate() {
+    console.log('GridImage: componentDidUpdate')
+    localStorage.setItem('favourites', JSON.stringify(this.props.favourites));
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if(props.favourites.hasOwnProperty(String(props.item.id))) {
+      return { isFavourite: true }
+    }
+    return null
+  }
+
   handleClick = event => {
     this.setState(prevState => ({ isFavourite: !prevState.isFavourite }), () => {
       this.dispatchFavourite();

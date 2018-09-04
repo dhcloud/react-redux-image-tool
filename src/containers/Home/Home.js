@@ -40,7 +40,6 @@ class Home extends React.Component {
   }
 
   makeApiRequest = (activePage = 1) => {
-    
     this.imagesLoaded = 0
     this.setState({ loading: true, isPageLoaded: false, activePage }, () => this.props.getImagesFromSearch(this.state.searchTerm, this.state.activePage))
   }
@@ -53,12 +52,6 @@ class Home extends React.Component {
 
   handlePageChange = activePage => {
     // Put the object into storage
-    localStorage.setItem('favourites', JSON.stringify(this.props.favourites));
-
-    // Retrieve the object from storage
-    //const favourites = localStorage.getItem('favourites');
-
-    // console.log('favourites: ', JSON.parse(favourites));
     this.makeApiRequest(activePage)
   }
 

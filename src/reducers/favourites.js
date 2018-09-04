@@ -1,12 +1,17 @@
 import { ADD_FAVOURITE, REMOVE_FAVOURITE } from '../constants/';
 
-export default (state = {}, { type, item }) => {
+const initialState = JSON.parse(localStorage.getItem('favourites')) || {}
+console.log('REDUCER: initialState', initialState)
+
+export default (state = initialState, { type, item }) => {
+  let imageObjById;
   switch (type) {
     case ADD_FAVOURITE:
-      const imageObjById = { [item.id]: item }
+      imageObjById = { [item.id]: item }
       return { ...state, ...imageObjById }
     case REMOVE_FAVOURITE:
-      return { ...state.filter(value => value !== item.id) }
+      const { [String(item.id)]: unusedVar, ...newState } = state
+      return { ...newState }
     default:
       return state;
   }

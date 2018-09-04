@@ -7,7 +7,8 @@ export default (state = initialState, action) => {
     case GET_IMAGE_DATA_FROM_API:
       return { ...state };
     case IMAGE_DATA_LOADED:
-      return { ...action.payload.data };
+      const totalHits = action.payload.data.totalHits > 500 ? 500 : state.search.totalHits
+      return { ...action.payload.data, totalHits };
     default:
       return state;
   }

@@ -2,33 +2,23 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import Grid from '@material-ui/core/Grid'
-import {addFavourite, removeFavourite} from '../../actions/favourites'
+import { addFavourite, removeFavourite } from '../../actions/favourites'
 import Favourite from '../Favourite'
 import './grid-image.scss'
 
-const imageSelection = event => {
-  console.log('imageSelection');
-}
-
-class GridImage extends React.Component {
-  
-  state = {
-    isFavourite: false
+class GridImage extends React.PureComponent {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isFavourite: props.favourites.hasOwnProperty(`${props.item.id}`) ? true : false
+    }
   }
 
   componentDidUpdate() {
-    console.log('GridImage: componentDidUpdate')
     localStorage.setItem('favourites', JSON.stringify(this.props.favourites));
   }
 
-  static getDerivedStateFromProps(props, state) {
-    if(props.favourites.hasOwnProperty(String(props.item.id))) {
-      return { isFavourite: true }
-    }
-    return null
-  }
-
-  handleClick = event => {
+  handleClick = () => {
     this.setState(prevState => ({ isFavourite: !prevState.isFavourite }), () => {
       this.dispatchFavourite();
     })
@@ -47,8 +37,10 @@ class GridImage extends React.Component {
     return (
       <Grid item xs={12} sm={6} md={4}>
         <div className={`image-container ${isPageLoaded ? 'animateImage' : ''}`} style={{animationDelay: `${index/15}s`}}>
-          <img src={ webformatURL } onLoad={ onGridImageLoaded } style={{ width: '350px', height: '200px'}} />
-          <Favourite onClick={this.handleClick} isSelected={this.state.isFavourite} />
+          <div style={{ width: '350px', height: '200px', position: 'relative'}}>
+            <img src={ webformatURL } onLoad={ onGridImageLoaded } style={{ width: '350px', height: '200px'}} />
+            <Favourite onClick={this.handleClick} isSelected={this.state.isFavourite} />
+          </div>
         </div>
       </Grid>
     )

@@ -5,7 +5,7 @@ import Icon from './Icon'
 const Favourite = props => {
   return (
     <div className='icon__container-favourite' onClick={e => props.onClick(e)}>
-      <Icon name='favourite' color={props.isSelected ? '#FC0' :'#fff'} size={30} />
+      <Icon name='favourite' color={props.isSelected ? '#fc0' :'#fff'} size={30} />
     </div>
   )
 }

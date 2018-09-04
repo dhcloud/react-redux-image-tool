@@ -9,7 +9,7 @@ export default (state = initialState, { type, item }) => {
       imageObjById = { [item.id]: item }
       return { ...state, ...imageObjById }
     case REMOVE_FAVOURITE:
-      const { [String(item.id)]: unusedVar, ...newState } = state
+      const { [`${item.id}`]: unusedVar, ...newState } = state
       return { ...newState }
     default:
       return state;

@@ -26,17 +26,20 @@ import { MAX_IMAGES_PER_PAGE } from '../../constants'
 import styles from './HomePageStyles.js'
 import '../../assets/styles/sass/main.scss'
 
-class Home extends React.Component {
+class Home extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {
       activePage: 1,
       searchTerm: '',
       loading: false,
-      isPageLoaded: false,
-      displayList: []
+      isPageLoaded: false
     }
     this.imagesLoaded = 0
+  }
+
+  componentDidMount() {
+    console.log('Home: componentDidMount')
   }
 
   makeApiRequest = (activePage = 1) => {
@@ -51,7 +54,6 @@ class Home extends React.Component {
   }
 
   handlePageChange = activePage => {
-    // Put the object into storage
     this.makeApiRequest(activePage)
   }
 
@@ -79,25 +81,8 @@ class Home extends React.Component {
     )
   }
 
-  displayImageByIndex = index => {
-    const { searchResults } = this.props
-    const item = searchResults[index]
-    const gridImage = <GridImage
-                        { ...item }
-                        index={ index }
-                        onGridImageLoaded={ this.onGridImageLoaded }
-                        { ...this.props }
-                        key={ item.id }
-                      />
-    const displayList = [ ...this.state.displayList, gridImage ]
-    this.setState({ displayList })
-    index++
-    if(index !== searchResults.length) {
-      setTimeout(() => this.displayImageByIndex(index), 250)
-    } 
-  }
-
   renderSearchResults = () => {
+    console.log('renderSearchResults')
     const { classes, searchResults } = this.props
     return ( 
       <div className={classes.imagesContainer}>
@@ -157,8 +142,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => ({
   searchResults: state.search.hits,
-  totalHits: state.search.totalHits,
-  favourites: state.favourites
+  totalHits: state.search.totalHits
 })
 
 Home.propTypes = {

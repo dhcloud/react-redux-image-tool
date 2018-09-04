@@ -33,9 +33,14 @@
 
 .icon-favourite {
   box-sizing: border-box;
+  transition: all .25s ease;
+  padding: .1rem;
 }
 
 .icon-favourite:hover {
   cursor: pointer;
+  fill: #fc0;
+  transform: scale(1.12);
+  padding: .3rem;
 }
 

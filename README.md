@@ -1,4 +1,4 @@
-# react-redux-pixabay
+# react-redux-image-tool
 Responsive web app for search various image APIs for copyright free media
 
 ## Setup

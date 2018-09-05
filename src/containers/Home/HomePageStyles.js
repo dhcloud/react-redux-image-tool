@@ -1,3 +1,4 @@
+// TODO MOVE PAGINATION STYLES TO CSS MODULE
 export default theme => ({
   imagesContainer: {
     flexGrow: 1,

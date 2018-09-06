@@ -36,14 +36,14 @@ class Home extends React.PureComponent {
       searchTerm: '',
       loading: false,
       isPageLoaded: false,
-      openModal: false
+      openModal: false,
+      toggleModal: false
     }
     this.imagesLoaded = 0
   }
 
   static getDerivedStateFromProps(props, prevState) {
-    console.log('getDerivedStateFromProps', props)
-    if(props.totalHits === 0) {
+    if(props.totalHits === 0 && prevState.openModal) {
       return { openModal: true }
     }
     return { openModal: props.totalHits === null ? null : false };
@@ -121,7 +121,8 @@ class Home extends React.PureComponent {
   }
 
   handleModalClick = event => {
-    this.setState({ openModal: false });
+    // trigger getDerivedStatefromProps 
+    this.setState(prevState => ({toggleModal: !prevState.toggleModal}));
   }
 
   render() {

@@ -151,12 +151,12 @@ class Home extends React.PureComponent {
         <section>
           { searchResults.length > 0 && this.renderSearchResults() }
           { loading && totalHits > 0 && <div style={ loaderBackgroundStyle }><SvgLoader { ...loaderIconStyle } /></div> }
-          { openModal &&  <Modal>
+          { /* openModal &&  <Modal>
                             <div className='modal__body'>
                               {`No search results for '${searchTerm}'. Click ${MODAL_BTN_TEXT} to continue`}
                               <button className='modal__button' onClick={e => this.handleModalClick(e)}>{MODAL_BTN_TEXT}</button>
                             </div>
-                          </Modal> }
+                          </Modal> */ }
         </section>
         <footer>
           { totalHits > MAX_IMAGES_PER_PAGE && !loading && this.renderFooter(classes) }

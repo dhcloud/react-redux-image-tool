@@ -37,9 +37,10 @@
   padding: .1rem;
 }
 
-.icon-favourite:hover {
+.no-touch .icon-favourite:hover {
   cursor: pointer;
-  fill: #fc0;
+  /* fill: #fc0; */
+  fill: #f00;
   transform: scale(1.12);
   padding: .3rem;
 }

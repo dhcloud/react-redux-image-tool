@@ -39,7 +39,7 @@ class GridImage extends React.PureComponent {
         <div className={`image-container ${isPageLoaded ? 'animateImage' : ''}`} style={{animationDelay: `${index/15}s`}}>
           <div style={{ width: '350px', height: '200px', position: 'relative'}}>
             <img src={ webformatURL } onLoad={ onGridImageLoaded } style={{ width: '350px', height: '200px'}} />
-            <Favourite onClick={this.handleClick} isSelected={this.state.isFavourite} />
+            <Favourite  onClick={ this.handleClick } isFavourite={ this.state.isFavourite } />
           </div>
         </div>
       </Grid>

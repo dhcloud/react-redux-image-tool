@@ -3,16 +3,18 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types'
+import Pagination from "react-js-pagination"
 
 // @material-ui
 import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
-import Pagination from "react-js-pagination";
 
 // actions
 import { getImagesFromSearch } from '../../actions/'
 
 // containers
+import Modal from '../Modal'
 
 // components
 import TextInputWithCta from '../../components/TextInputWithCta'
@@ -20,11 +22,26 @@ import GridImage from '../../components/GridImage'
 import { SvgLoader, loaderBackgroundStyle, loaderIconStyle } from '../../components/Loader'
 
 // constants
-import { MAX_IMAGES_PER_PAGE } from '../../constants'
+import { MAX_IMAGES_PER_PAGE, MODAL_BTN_TEXT } from '../../constants'
 
 // styles
 import styles from './HomePageStyles.js'
 import '../../assets/styles/sass/main.scss'
+
+function rand() {
+  return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+  const top = 50 + rand();
+  const left = 50 + rand();
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
 
 class Home extends React.PureComponent {
   constructor(props) {
@@ -33,13 +50,19 @@ class Home extends React.PureComponent {
       activePage: 1,
       searchTerm: '',
       loading: false,
-      isPageLoaded: false
+      isPageLoaded: false,
+      openModal: false
     }
     this.imagesLoaded = 0
+    this.modalDisplay = false
   }
 
-  componentDidMount() {
-    console.log('Home: componentDidMount')
+  static getDerivedStateFromProps(props, prevState) {
+    console.log('getDerivedStateFromProps', props)
+    if(props.totalHits === 0 && !modalDisplay) {
+      return { openModal: true }
+    }
+    return { openModal: props.totalHits === null ? null : false };
   }
 
   makeApiRequest = (activePage = 1) => {
@@ -82,7 +105,6 @@ class Home extends React.PureComponent {
   }
 
   renderSearchResults = () => {
-    console.log('renderSearchResults')
     const { classes, searchResults } = this.props
     return ( 
       <div className={classes.imagesContainer}>
@@ -114,9 +136,13 @@ class Home extends React.PureComponent {
     )
   }
 
+  handleModalClick = event => {
+    this.setState({ openModal: false });
+  }
+
   render() {
     const { classes, searchResults, totalHits } = this.props
-    const { loading } = this.state
+    const { loading, openModal, searchTerm } = this.state
     return (
       <React.Fragment>
         <header>
@@ -124,7 +150,13 @@ class Home extends React.PureComponent {
         </header>
         <section>
           { searchResults.length > 0 && this.renderSearchResults() }
-          { loading && <div style={ loaderBackgroundStyle }><SvgLoader { ...loaderIconStyle } /></div> }
+          { loading && totalHits > 0 && <div style={ loaderBackgroundStyle }><SvgLoader { ...loaderIconStyle } /></div> }
+          { openModal &&  <Modal>
+                            <div className='modal__body'>
+                              {`No search results for '${searchTerm}'. Click ${MODAL_BTN_TEXT} to continue`}
+                              <button className='modal__button' onClick={e => this.handleModalClick(e)}>{MODAL_BTN_TEXT}</button>
+                            </div>
+                          </Modal> }
         </section>
         <footer>
           { totalHits > MAX_IMAGES_PER_PAGE && !loading && this.renderFooter(classes) }

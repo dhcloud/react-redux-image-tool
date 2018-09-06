@@ -1,4 +1,6 @@
+const HttpStatus = require('http-status-codes');
 const fetch = require('node-fetch');
+console.log('HttpStatus.OK', HttpStatus.OK);
 
 const encodeDataToURL = (pixabayUrlParams) => {
   const encodedUrlData = Object
@@ -20,7 +22,8 @@ const devServerConfig = port => ({
       const pixabayImagesUrl = encodeDataToURL(req.query)
       // console.log('pixabayImagesUrl', pixabayImagesUrl)
       fetch(pixabayImagesUrl).then((pixabayApiresponse) => {
-        if (pixabayApiresponse.status !== 200) {
+        // if (pixabayApiresponse.status !== 200) {
+        if (pixabayApiresponse.status !== HttpStatus.OK) {
           // console.log('Looks like a problem. Status Code: ', pixabayApiresponse.status);
           res.err = { message: 'Look like there\'s an error of some type' }
         }

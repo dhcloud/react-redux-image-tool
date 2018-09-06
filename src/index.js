@@ -15,6 +15,11 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const enhancer = composeEnhancers(applyMiddleware(thunk))
 const store = createStore(rootReducer, enhancer)
 
+// resolve iOS hover interferance
+if (!("ontouchstart" in document.documentElement)) {
+  document.documentElement.className += "no-touch";
+}
+
 const AppContainer = () => {
   return (
     <Provider store={store}>

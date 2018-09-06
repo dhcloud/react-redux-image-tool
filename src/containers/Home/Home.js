@@ -44,7 +44,7 @@ class Home extends React.PureComponent {
  
   static getDerivedStateFromProps(props, prevState) {
   // TODO DOUBLE CHECK AS CHANGES MADE ON TRAIN USING iOS Working Copy
-    if(props.totalHits === 0 && prevState.openModal) {
+    if(props.totalHits === 0 && !prevState.toggleModal) {
       return { openModal: true }
     }
     return { openModal: props.totalHits === null ? null : false };
@@ -122,7 +122,6 @@ class Home extends React.PureComponent {
   }
 
   handleModalClick = event => {
-    // trigger getDerivedStatefromProps 
     this.setState(prevState => ({toggleModal: !prevState.toggleModal}));
   }
 

@@ -41,8 +41,9 @@ class Home extends React.PureComponent {
     }
     this.imagesLoaded = 0
   }
-
+ 
   static getDerivedStateFromProps(props, prevState) {
+  // TODO DOUBLE CHECK AS CHANGES MADE ON TRAIN USING iOS Working Copy
     if(props.totalHits === 0 && prevState.openModal) {
       return { openModal: true }
     }

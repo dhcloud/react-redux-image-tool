@@ -39,12 +39,11 @@ class Home extends React.PureComponent {
       openModal: false
     }
     this.imagesLoaded = 0
-    this.modalDisplay = false
   }
 
   static getDerivedStateFromProps(props, prevState) {
     console.log('getDerivedStateFromProps', props)
-    if(props.totalHits === 0 && !modalDisplay) {
+    if(props.totalHits === 0) {
       return { openModal: true }
     }
     return { openModal: props.totalHits === null ? null : false };

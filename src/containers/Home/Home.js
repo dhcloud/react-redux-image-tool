@@ -28,21 +28,6 @@ import { MAX_IMAGES_PER_PAGE, MODAL_BTN_TEXT } from '../../constants'
 import styles from './HomePageStyles.js'
 import '../../assets/styles/sass/main.scss'
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
-
 class Home extends React.PureComponent {
   constructor(props) {
     super(props)

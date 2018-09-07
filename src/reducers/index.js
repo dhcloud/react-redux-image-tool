@@ -4,5 +4,5 @@ import favourites from './favourites'
 
 export default combineReducers({
   search,
-  favourites
+  favourites,
 });

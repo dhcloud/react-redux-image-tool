@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 
 // actions
-import { getImagesFromSearch } from '../../actions/'
+import { getImagesFromSearch, closeModal } from '../../actions/'
 
 // containers
 import Modal from '../Modal'
@@ -36,18 +36,8 @@ class Home extends React.PureComponent {
       searchTerm: '',
       loading: false,
       isPageLoaded: false,
-      openModal: false,
-      toggleModal: false
     }
     this.imagesLoaded = 0
-  }
- 
-  static getDerivedStateFromProps(props, prevState) {
-  // TODO DOUBLE CHECK AS CHANGES MADE ON TRAIN USING iOS Working Copy
-    if(props.totalHits === 0 && !prevState.toggleModal) {
-      return { openModal: true }
-    }
-    return { openModal: props.totalHits === null ? null : false };
   }
 
   makeApiRequest = (activePage = 1) => {
@@ -121,13 +111,14 @@ class Home extends React.PureComponent {
     )
   }
 
-  handleModalClick = event => {
-    this.setState(prevState => ({toggleModal: !prevState.toggleModal}));
+  handleModalClick = () => {
+    console.log('handleModalClick')
+    this.props.closeModal()
   }
 
   render() {
-    const { classes, searchResults, totalHits } = this.props
-    const { loading, openModal, searchTerm } = this.state
+    const { classes, searchResults, totalHits, isModelToOpen } = this.props
+    const { loading, searchTerm } = this.state
     return (
       <React.Fragment>
         <header>
@@ -136,12 +127,12 @@ class Home extends React.PureComponent {
         <section>
           { searchResults.length > 0 && this.renderSearchResults() }
           { loading && totalHits > 0 && <div style={ loaderBackgroundStyle }><SvgLoader { ...loaderIconStyle } /></div> }
-          { /* openModal &&  <Modal>
+          { isModelToOpen &&  <Modal>
                             <div className='modal__body'>
                               {`No search results for '${searchTerm}'. Click ${MODAL_BTN_TEXT} to continue`}
-                              <button className='modal__button' onClick={e => this.handleModalClick(e)}>{MODAL_BTN_TEXT}</button>
+                              <button className='modal__button' onClick={() => this.handleModalClick()}>{MODAL_BTN_TEXT}</button>
                             </div>
-                          </Modal> */ }
+                          </Modal> }
         </section>
         <footer>
           { totalHits > MAX_IMAGES_PER_PAGE && !loading && this.renderFooter(classes) }
@@ -153,18 +144,22 @@ class Home extends React.PureComponent {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    getImagesFromSearch
+    getImagesFromSearch,
+    closeModal
   }, dispatch)
 }
 
 const mapStateToProps = state => ({
   searchResults: state.search.hits,
-  totalHits: state.search.totalHits
+  totalHits: state.search.totalHits,
+  isModelToOpen: state.search.isModelToOpen
 })
 
 Home.propTypes = {
   classes: PropTypes.object.isRequired,
   searchResults: PropTypes.array.isRequired,
+  totalHits: PropTypes.number,
+  isModelToOpen: PropTypes.bool
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Home))

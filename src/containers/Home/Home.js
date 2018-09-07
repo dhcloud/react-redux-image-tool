@@ -16,10 +16,14 @@ import { getImagesFromSearch, closeModal } from '../../actions/'
 // containers
 
 // components
-import TextInputWithCta from '../../components/TextInputWithCta'
-import GridImage from '../../components/GridImage'
-import Modal from '../../components/Modal'
-import { SvgLoader, loaderBackgroundStyle, loaderIconStyle } from '../../components/Loader'
+import {
+  TextInputWithCta,
+  GridImage,
+  Modal,
+  SvgLoader,
+  loaderBackgroundStyle,
+  loaderIconStyle
+} from '../../components/'
 
 // constants
 import { MAX_IMAGES_PER_PAGE, MODAL_BTN_TEXT } from '../../constants'

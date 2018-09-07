@@ -14,11 +14,11 @@ import { withStyles } from '@material-ui/core/styles'
 import { getImagesFromSearch, closeModal } from '../../actions/'
 
 // containers
-import Modal from '../Modal'
 
 // components
 import TextInputWithCta from '../../components/TextInputWithCta'
 import GridImage from '../../components/GridImage'
+import Modal from '../../components/Modal'
 import { SvgLoader, loaderBackgroundStyle, loaderIconStyle } from '../../components/Loader'
 
 // constants
@@ -112,7 +112,6 @@ class Home extends React.PureComponent {
   }
 
   handleModalClick = () => {
-    console.log('handleModalClick')
     this.props.closeModal()
   }
 
